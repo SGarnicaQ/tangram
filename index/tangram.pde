@@ -1,6 +1,6 @@
 float tam,xt,yt,xt_,yt_,xc,yc,xtg,ytg,xtg_,ytg_,xp,yp,xtm,ytm;
 int figura = 7;
-int colores[][] = {{255,128,0},{153,76,0},{0,255,0},{51,255,255},{255,0,0},{255,0,255},{0,0,0}};  
+int colores[][] = {{255,128,0},{153,76,0},{0,255,0},{51,255,255},{255,0,0},{255,0,255},{255,255,0}};  
 float rotacion[] = {0,0,0,0,0,0,0};
 int flip = 1;
 void setup(){
