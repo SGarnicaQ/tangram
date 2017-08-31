@@ -84,7 +84,7 @@ void mouseClicked(){
         break;
     }
   }
-  if(mouseButton == CENTER)flip *= -1;
+  if(mouseButton == CENTER && get(mouseX,mouseY) == color(colores[5][0],colores[5][1],colores[5][2]))flip *= -1;
 }
 
 void draw(){
