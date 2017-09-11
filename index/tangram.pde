@@ -1,8 +1,10 @@
-float tam,xt,yt,xt_,yt_,xc,yc,xtg,ytg,xtg_,ytg_,xp,yp,xtm,ytm;
+float tam,xt ,yt ,xt_ ,yt_ ,xc ,yc ,xtg ,ytg ,xtg_ ,ytg_ ,xp ,yp ,xtm ,ytm ;
 int figura = 7;
 int colores[][] = {{255,128,0},{153,76,0},{0,255,0},{51,255,255},{255,0,0},{255,0,255},{255,255,0}};  
 float rotacion[] = {0,0,0,0,0,0,0};
+float sca[] = {1,1,sqrt(2),2,2,1,1};
 int flip = 1;
+
 void setup(){
   fullScreen();
   tam = width/10.8;
@@ -15,7 +17,6 @@ void setup(){
   ytg = height*12/50;
   ytg_= height*32/50;
   yp  = height*40/50;
-  
 }
 void mousePressed(){
   for(int i = 0 ; i<7 ; i++){
@@ -37,8 +38,8 @@ void mouseDragged(){
       yt_ += (mouseY - pmouseY);
       break;
     case 2:
-      xc += (mouseX - pmouseX);
-      yc += (mouseY - pmouseY);
+      xtm += (mouseX - pmouseX);
+      ytm += (mouseY - pmouseY);
       break;
     case 3:
       xtg += (mouseX - pmouseX);
@@ -53,8 +54,8 @@ void mouseDragged(){
       yp += (mouseY - pmouseY);
       break;
     case 6:
-      xtm += (mouseX - pmouseX);
-      ytm += (mouseY - pmouseY);
+      xc += (mouseX - pmouseX);
+      yc += (mouseY - pmouseY);
       break;    
   }
 }
@@ -86,12 +87,28 @@ void mouseClicked(){
   }
   if(mouseButton == CENTER && get(mouseX,mouseY) == color(colores[5][0],colores[5][1],colores[5][2]))flip *= -1;
 }
-
+int cont = 0;
+void cuadrado(){
+  loadPixels();
+  for(int i = 4*width/7+1;i<4*width/7+sqrt(2*(pow(tam*2,2)));i++){
+    for(int j = height/3+1; j<height/3+sqrt(2*(pow(tam*2,2)));j++){
+      if(get(i,j) == color(255))cont++;
+    }
+    if(cont > 500){
+      println(cont);
+      cont = 0;
+      break;
+    }else println("f");
+  }
+  
+  if(cont!=0)println("WIN");
+  
+}
 void draw(){
   background(40,40,40);
   loadPixels();
   
-  float coordenadas[][] = {{xt,yt},{xt_,yt_},{xc,yc},{xtg,ytg},{xtg_,ytg_},{xp,yp},{xtm,ytm}};
+  float coordenadas[][] = {{xt,yt},{xt_,yt_},{xtm,ytm},{xtg,ytg},{xtg_,ytg_},{xp,yp},{xc,yc}};
   //Fuente
   
   PFont font;
@@ -102,30 +119,30 @@ void draw(){
   textFont(font,width/45);
   //Figuras
   
+  
+  fill(255,255,255);
+  rect(4*width/7,height/3,sqrt(2*(pow(tam*2,2))),sqrt(2*(pow(tam*2,2))));
+  
+  cuadrado();
+  
   for(int i = 0; i<7; i++){
     pushMatrix();
+    strokeWeight(0);
     fill(colores[i][0],colores[i][1],colores[i][2]);
     translate(coordenadas[i][0],coordenadas[i][1]);
     rotate(rotacion[i]);
+    scale(sca[i]);
     switch(i){
       case 0:  
-      case 1:    
-        beginShape();                                             //triangulo peque
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+        beginShape();                                             //triangulos
         vertex(-tam/2,-tam/2);
         vertex(-tam/2+tam,-tam/2);
         vertex(-tam/2,-tam/2+tam);
         endShape();
-        break;
-      case 2:
-        rect(-tam/2,-tam/2,tam,tam);                                      //cuadrado
-        break;
-      case 3:
-      case 4:
-        beginShape();                                             //triangulo grande
-        vertex(-tam/2,-tam/2);
-        vertex(-tam/2+tam*2,-tam/2);
-        vertex(-tam/2,-tam/2+tam*2);
-        endShape();                                               
         break;
       case 5:
         beginShape();                                             //paralelepipedo
@@ -136,11 +153,7 @@ void draw(){
         endShape();
         break;
       case 6:
-        beginShape();                                             //triangulo mediano
-        vertex(-tam/2,-tam/2);
-        vertex(-tam/2+sqrt(2*pow(tam,2)),-tam/2);
-        vertex(-tam/2,-tam/2+sqrt(2*pow(tam,2)));
-        endShape(); 
+        rect(-tam/2,-tam/2,tam,tam);                          //cuadrado
         break;
     }
     popMatrix();
