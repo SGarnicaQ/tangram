@@ -5,6 +5,9 @@ float rotacion[] = {0,0,0,0,0,0,0};
 float sca[] = {1,1,sqrt(2),2,2,1,1};
 int flip = 1;
 
+int cont = 0;
+float ladoc; 
+
 void setup(){
   fullScreen();
   tam = width/10.8;
@@ -17,6 +20,7 @@ void setup(){
   ytg = height*12/50;
   ytg_= height*32/50;
   yp  = height*40/50;
+  ladoc = sqrt(2*(pow(tam*2,2)));
 }
 void mousePressed(){
   for(int i = 0 ; i<7 ; i++){
@@ -87,22 +91,15 @@ void mouseClicked(){
   }
   if(mouseButton == CENTER && get(mouseX,mouseY) == color(colores[5][0],colores[5][1],colores[5][2]))flip *= -1;
 }
-int cont = 0;
+
 void cuadrado(){
-  loadPixels();
-  for(int i = 4*width/7+1;i<4*width/7+sqrt(2*(pow(tam*2,2)));i++){
-    for(int j = height/3+1; j<height/3+sqrt(2*(pow(tam*2,2)));j++){
+  for(int i = 4*width/7;  i < 4*width/7+ladoc; i++){
+    for(int j = height/3; j <  height/3+ladoc; j++){
       if(get(i,j) == color(255))cont++;
     }
-    if(cont > 500){
-      println(cont);
-      cont = 0;
-      break;
-    }else println("f");
   }
-  
-  if(cont!=0)println("WIN");
-  
+  if(cont<pow(ladoc,2)*0.05)println("WIN");
+  cont = 0;
 }
 void draw(){
   background(40,40,40);
@@ -121,9 +118,8 @@ void draw(){
   
   
   fill(255,255,255);
-  rect(4*width/7,height/3,sqrt(2*(pow(tam*2,2))),sqrt(2*(pow(tam*2,2))));
-  
-  cuadrado();
+  println(ladoc);
+  rect(4*width/7,height/3,ladoc,ladoc);
   
   for(int i = 0; i<7; i++){
     pushMatrix();
@@ -158,4 +154,6 @@ void draw(){
     }
     popMatrix();
   }
+  
+  cuadrado();
 }
