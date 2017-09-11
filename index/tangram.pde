@@ -112,13 +112,12 @@ void draw(){
   font = loadFont("ShowcardGothic-Reg-70.vlw");  
   textFont(font,width/15);
   fill(255,0,40);
-  text("Tangram",width/2,height*1/7);
+  text("Tangram",4*width/7,height*1/7);
   textFont(font,width/45);
   //Figuras
   
   
   fill(255,255,255);
-  println(ladoc);
   rect(4*width/7,height/3,ladoc,ladoc);
   
   for(int i = 0; i<7; i++){
