@@ -2,7 +2,7 @@ import static javax.swing.JOptionPane.*;
 
 Figure[] figures;
 Solution shapes = new Solution();
-int nImg = 0, cont = 0;
+int nImg, cont = 0;
 String typing = "";
 PGraphics fg;
 float minX, minY, maxX=0, maxY=0, area;
@@ -15,6 +15,10 @@ void setup() {
   minY = height;
   area = sqrt(2*(pow((width/10.8)*2, 2)));
   shapes.load();
+
+  PFont font;
+  font = loadFont("Bauhaus93-70.vlw");  
+  textFont(font, width/15);
 
   figures = new Figure[7];
   // Inicializacion de las figuras
@@ -30,7 +34,6 @@ void setup() {
 void draw() {
   background(100);
   modes();
-  
 }
 
 int m;
@@ -39,11 +42,14 @@ void modes() {
   stroke(200);
   strokeWeight(2);
   rect(0, 0, width/10, height/10);
-  fill(200);
   textMode(CENTER);
   textAlign(CENTER);
+  fill(200,10,10);
+  textSize(width/10);
+  text("TANGRAM", width/2, height/10);
+  fill(200);
   textSize(width/50);
-  text("MODOS",width/20,height/20);
+  text("MODOS", width/20, height/20);
   switch(m) {
   case 0:
     instruction();

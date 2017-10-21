@@ -2,6 +2,7 @@ class Solution {
   private ArrayList<PImage> img = new ArrayList<PImage>();
   void paint(int k) {
     k-=48;
+
     imageMode(CENTER);
     pushMatrix();
     if (k>=0 && k<img.size())
@@ -11,10 +12,12 @@ class Solution {
     popMatrix();
   }
   void load() {
+    nImg = 0;
     img.clear();
-    while (loadImage("img/"+nImg+".jpg") != null) {
+    do{
       img.add(loadImage("img/"+nImg+".jpg"));
       nImg++;
-    }
+    }while(loadImage("img/"+nImg+".jpg") != null);
+    printArray(img);
   }
 }
