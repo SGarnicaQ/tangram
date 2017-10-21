@@ -13,7 +13,7 @@ void setup() {
   size(1000, 1000);
   minX = width;
   minY = height;
-  area = sqrt(2*(pow((width/10.8)*2, 2)));
+  area = sqrt(2*(pow((width/10.8)*2, 2))*(width/1000.0));
   shapes.load();
 
   PFont font;

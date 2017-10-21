@@ -5,9 +5,11 @@ class Solution {
 
     imageMode(CENTER);
     pushMatrix();
+    translate(width/2, height/2);
+    scale(width/1000.0);
     if (k>=0 && k<img.size())
       if (img.get(k) != null) 
-        image(img.get(k), width/2, height/2);
+        image(img.get(k), 0,0);
 
     popMatrix();
   }
