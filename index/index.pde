@@ -9,8 +9,8 @@ float minX, minY, maxX=0, maxY=0, area;
 
 
 void setup() {
-  //fullScreen();
-  size(1000, 1000);
+  fullScreen();
+  //size(700, 700);
   minX = width;
   minY = height;
   area = sqrt(2*(pow((width/10.8)*2, 2))*(width/1000.0));

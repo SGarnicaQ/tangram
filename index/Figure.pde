@@ -15,7 +15,7 @@ abstract class Figure {
   public void paint() {     // pintar la figura en el canvas
     pushMatrix();
     stroke(4);
-    if(selected)strokeWeight(10);
+    if(selected)strokeWeight(2);
     else noStroke();
     
     fill(col);
@@ -83,8 +83,6 @@ abstract class Figure {
   }
   public void saveFigure() {
     pos.add(new PVector(minX, minY).mult(-1));
-
-
     test();
   }
   public void test() {

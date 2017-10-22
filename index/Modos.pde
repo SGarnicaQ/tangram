@@ -13,9 +13,8 @@ void shapes() {
   for (int i = 0; i < width; i++) {
     for (int j = 0; j <  height; j++)if (get(i, j) == color(255))cont++;
   }
-  println(cont);
   if (cont<pow(area, 2)*0.01 && !mousePressed && cont !=0) {
-    showMessageDialog(null, "You Win", "Win", ERROR_MESSAGE);
+    showMessageDialog(null, "You Win", "Win", INFORMATION_MESSAGE);
     setup();
   }
   cont = 0;
